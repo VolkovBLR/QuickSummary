@@ -4,7 +4,7 @@ final class APIClient {
     static let shared = APIClient()
     private init() {}
 
-    var baseURL = URL(string: "http://127.0.0.1:8000")!
+    var baseURL = URL(string: "http://10.194.22.143:8000")!
 
     func classify(text: String) async throws -> ClassifyResponse {
         let requestBody = ClassifyRequest(text: text)
