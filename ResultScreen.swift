@@ -49,7 +49,6 @@ struct ResultScreen: View {
                     }
                 }
             }
-            .navigationTitle("Экран результата")
             .sheet(isPresented: $viewModel.isSharePresented) {
                 ShareSheet(items: [viewModel.currentResult?.summary ?? ""])
             }
