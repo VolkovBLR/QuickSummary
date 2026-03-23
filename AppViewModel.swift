@@ -13,6 +13,7 @@ final class AppViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var isSharePresented = false
+    @Published var selectedTab: Int = 0
 
     func summarize(context: NSManagedObjectContext) async {
         let trimmed = inputText.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -50,6 +51,9 @@ final class AppViewModel: ObservableObject {
 
             currentResult = result
             save(result: result, context: context)
+            DispatchQueue.main.async {
+                self.selectedTab = 1
+            }
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -74,6 +78,7 @@ final class AppViewModel: ObservableObject {
             keyPoints: item.keyPointsList,
             modelUsed: item.modelUsed
         )
+        self.selectedTab = 1
     }
 
     private func save(result: SummaryResult, context: NSManagedObjectContext) {

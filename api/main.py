@@ -104,24 +104,24 @@ def classify_content(text: str) -> ContentType:
 
 def choose_model(language: str, content_type: ContentType) -> str:
     if language == "ru":
-        return "RussianNLP/FRED-T5-Summarizer"
+        return "csebuetnlp/mT5_multilingual_XLSum"
     return "facebook/bart-large-cnn"
 
 
 def normalize_input_text(text: str, language: str) -> str:
     cleaned = " ".join(text.split())
-    max_chars = 1800 if language == "ru" else 2500
-    return cleaned[:max_chars]
-
+    max_chars = 1200 if language == "ru" else 3000
+    if len(cleaned) > max_chars:
+        cleaned = cleaned[:max_chars] + "..."
+    return cleaned
 
 def build_input_text(text: str, language: str, model: str) -> str:
     cleaned = normalize_input_text(text, language)
 
-    if model == "RussianNLP/FRED-T5-Summarizer":
-        return f"<LM>{cleaned}"
+    if model == "csebuetnlp/mT5_multilingual_XLSum":
+        return cleaned
 
     return cleaned
-
 
 async def call_huggingface(model: str, input_text: str, summary_length: SummaryLength) -> str:
     if not HF_API_TOKEN:

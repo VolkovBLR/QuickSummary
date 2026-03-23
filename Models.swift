@@ -11,13 +11,13 @@ enum ContentType: String, CaseIterable, Codable, Identifiable {
     var title: String {
         switch self {
         case .news:
-            return "Новости / News"
+            return "Новости"
         case .technical:
-            return "Технический / Technical"
+            return "Технический"
         case .scientific:
-            return "Научный / Scientific"
+            return "Научный"
         case .general:
-            return "Общий / General"
+            return "Общий"
         }
     }
 }
@@ -32,11 +32,11 @@ enum SummaryLength: String, CaseIterable, Codable, Identifiable {
     var title: String {
         switch self {
         case .short:
-            return "Коротко / Short"
+            return "Коротко"
         case .medium:
-            return "Стандарт / Standard"
+            return "Стандарт"
         case .long:
-            return "Подробно / Long"
+            return "Подробно"
         }
     }
 }
